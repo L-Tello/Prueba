@@ -1,17 +1,22 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
+from flask_cors import CORS, cross_origin
+import json
+import os
+
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/', methods=['GET'])
-def pantalla_principal():
-    return "Hola mundo"
+def principal():
+    return {"nombre:" "Ludwin Tello", "carnet":"202010303"}
 
 @app.route('/hola', methods=['GET'])
 def hola():
     return "Hola"
     
 if __name__ == '__main__':
-    puerto = 5000
+    puerto = int(os.environ.get('PORT', 3000))
     app.run(host = '0.0.0.0', port = puerto)
 
 
